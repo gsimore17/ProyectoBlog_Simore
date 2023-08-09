@@ -17,12 +17,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from proyecto_blog.views import inicio
+from proyecto_blog.views import inicio, acercade
 
 # Son las URLS generales del proyecto
 
 urlpatterns = [
     path("", inicio, name="inicio"),
+    path("acerca-de-mi", acercade, name="acerca-de"),
     path("admin/", admin.site.urls),
     path("perfiles/", include("perfiles.urls")),
 
