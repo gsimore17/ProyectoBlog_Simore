@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'perfiles',
 ]
 
 MIDDLEWARE = [
@@ -54,7 +55,11 @@ ROOT_URLCONF = 'proyecto_blog.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            BASE_DIR / "templates_base/",
+            #BASE_DIR / "control_estudios/templates\control_estudios",
+            BASE_DIR / "perfiles/templates\perfiles",
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
