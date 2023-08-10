@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'perfiles',
+    'pr_blogapp',
 ]
 
 MIDDLEWARE = [
@@ -57,8 +58,8 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             BASE_DIR / "templates_base/",
-            #BASE_DIR / "control_estudios/templates\control_estudios",
             BASE_DIR / "perfiles/templates\perfiles",
+            BASE_DIR / "pr_blogapp/templates\pr_blogapp",
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -126,3 +127,5 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_URL = '/perfiles/login'

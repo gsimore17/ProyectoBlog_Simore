@@ -26,5 +26,6 @@ urlpatterns = [
     path("acerca-de-mi", acercade, name="acerca-de"),
     path("admin/", admin.site.urls),
     path("perfiles/", include("perfiles.urls")),
+    path("pr_blogapp/", include("pr_blogapp.urls")),
 
 ]

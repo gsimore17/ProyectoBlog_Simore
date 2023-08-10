@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block titulo %}
+<h1> Lista de artículos </h1>
+{% endblock %}
+
+{% block contenido %}
+<form method="post">
+<h1><a class="btn btn-primary" href="{% url 'crear_articulo' %}">CREAR ARTÍCULO</a></h1>
+
+<div style="text-align: center;">
+{% for articulo in articulos %}
+    <div class="articulo">
+      <h2><a href="{% url 'detalle_articulo' articulo.pk %}">{{ articulo.titulo }}</a></h2>
+      <h5><a href="{% url 'detalle_articulo' articulo.pk %}">{{ articulo.subtitulo }}</a></h5> 
+      <p>Autor: {{ articulo.autor }}</p>
+      <p>Fecha: {{ articulo.fecha }}</p>
+      <p>{{ articulo.contenido }}</p>
+    </div>
+{% endfor %}
+{% endblock %}
+
+
