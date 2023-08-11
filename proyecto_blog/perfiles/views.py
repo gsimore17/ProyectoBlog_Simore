@@ -5,10 +5,13 @@ from django.shortcuts import render, redirect
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.views import LogoutView
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth import login, authenticate
 
 from perfiles.forms import UserRegisterForm
+from perfiles.models import User
 
 def registro(request):
    if request.method == "POST":
@@ -54,3 +57,36 @@ def login_view(request):
 
 class CustomLogoutView(LogoutView):
    template_name = 'perfiles/logout.html'
+
+
+def mi_perfil(request):
+    usuario = request.user
+    data = {
+        'form': UserRegisterForm(instance=usuario)
+    }
+    
+    if request.method == 'POST':
+        formulario = UserRegisterForm(data=request.POST, instance=usuario)
+        
+        if formulario.is_valid():
+            formulario.save()
+            messages.success(request, "Registro modificado correctamente")
+            return redirect(to="/")
+        else:
+            data["form"] = formulario
+    
+    return render(request, 'perfiles/mi-perfil.html', data)
+
+#class EditarUserView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+#    model = User
+#    form_class = UserRegisterForm
+#    template_name = 'perfiles/mi-perfil.html'
+#    success_url = reverse('mi-perfil')
+
+#    def form_valid(self, form):
+#        form.instance.autor = self.request.user
+#        return super().form_valid(form)
+
+#    def test_func(self):
+#        user = self.get_object()
+#        return self.request.user == articulo.username

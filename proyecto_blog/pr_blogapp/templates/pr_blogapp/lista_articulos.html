@@ -9,15 +9,21 @@
 <h1><a class="btn btn-primary" href="{% url 'crear_articulo' %}">CREAR ARTÍCULO</a></h1>
 
 <div style="text-align: center;">
-{% for articulo in articulos %}
+{% if articulos|length %}
+  {% for articulo in articulos %}
     <div class="articulo">
-      <h2><a href="{% url 'detalle_articulo' articulo.pk %}">{{ articulo.titulo }}</a></h2>
-      <h5><a href="{% url 'detalle_articulo' articulo.pk %}">{{ articulo.subtitulo }}</a></h5> 
+      <h2>Autor: {{ articulo.titulo }}</h2>
+      <h5>Fecha: {{ articulo.subtitulo }}</h5>
+      <!--h2><a href="{% url 'detalle_articulo' articulo.pk %}">{{ articulo.titulo }}</a></h2>
+      <h5><a href="{% url 'detalle_articulo' articulo.pk %}">{{ articulo.subtitulo }}</a></h5--> 
+      <h8><a class="btn btn-primary" href="{% url 'detalle_articulo' articulo.pk %}">Leer más</a></h8>
       <p>Autor: {{ articulo.autor }}</p>
       <p>Fecha: {{ articulo.fecha }}</p>
       <p>{{ articulo.contenido }}</p>
     </div>
-{% endfor %}
+  {% endfor %}
+{% else %} <h5>No hay entradas aún.</h5>
+{% endif %}
 {% endblock %}
 
 

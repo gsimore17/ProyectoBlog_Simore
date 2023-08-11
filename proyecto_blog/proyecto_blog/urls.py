@@ -16,16 +16,22 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
+from django.conf import settings
+from django.conf.urls.static import static
 from proyecto_blog.views import inicio, acercade
 
 # Son las URLS generales del proyecto
 
 urlpatterns = [
     path("", inicio, name="inicio"),
-    path("acerca-de-mi", acercade, name="acerca-de"),
+    path("about/", acercade, name="acerca-de"),
     path("admin/", admin.site.urls),
-    path("perfiles/", include("perfiles.urls")),
-    path("pr_blogapp/", include("pr_blogapp.urls")),
+    path("accounts/", include("perfiles.urls")),
+    path("pages/", include("pr_blogapp.urls")),
 
 ]
+
+
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

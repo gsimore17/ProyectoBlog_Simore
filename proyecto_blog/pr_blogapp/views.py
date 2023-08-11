@@ -34,7 +34,7 @@ class EditarArticuloView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Articulo
     form_class = ArticuloForm
     template_name = 'pr_blogapp/editar_articulo.html'
-    success_url = '/lista_articulos'
+    success_url = reverse_lazy ('lista_articulos')
 
     def form_valid(self, form):
         form.instance.autor = self.request.user

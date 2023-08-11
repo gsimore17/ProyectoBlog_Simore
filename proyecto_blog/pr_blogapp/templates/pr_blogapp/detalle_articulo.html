@@ -1,11 +1,17 @@
 {% extends "base.html" %}
 {% block contenido %}
+<div style="text-align: center;">
 <h1> {{ articulo.titulo }} </h1>
-<h2> Por {{ articulo.autor }} el {{ articulo.fecha|date:"d/m/Y" }} </h2>
+<p> {{ articulo.subtitulo }} </p>
 <p> {{ articulo.cuerpo }} </p>
-{% if articulo.imagen %}<img src="{{ articulo.imagen.url }}" alt="{{ articulo.titulo }}">{% endif %}
+
+{% if articulo.imagen %}<img src="{{ articulo.imagen.url }}">{% endif %}
+
+<h5> Por {{ articulo.autor }} el {{ articulo.fecha|date:"d/m/Y" }} </h5>
 {% if user.is_authenticated and user == articulo.autor %}
+
 <a href="{% url 'editar_articulo' articulo.pk %}">Editar Artículo</a>
 <a href="{% url 'borrar_articulo' articulo.pk %}">Borrar Artículo</a>
+</div>
 {% endif %}
 {% endblock contenido %}
