@@ -1,0 +1,4 @@
+Django==4.2.3
+Pillow==10.0.0
+
+#lista de las dependencias de python para correr el proyecyo

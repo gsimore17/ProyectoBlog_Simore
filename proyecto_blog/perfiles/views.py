@@ -3,6 +3,7 @@ from django.shortcuts import render
 # Create your views here.
 from django.shortcuts import render, redirect
 from django.urls import reverse, reverse_lazy
+from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
@@ -60,12 +61,14 @@ class CustomLogoutView(LogoutView):
 
 
 def mi_perfil(request):
+    
     usuario = request.user
     data = {
         'form': UserRegisterForm(instance=usuario)
     }
     
     if request.method == 'POST':
+        
         formulario = UserRegisterForm(data=request.POST, instance=usuario)
         
         if formulario.is_valid():

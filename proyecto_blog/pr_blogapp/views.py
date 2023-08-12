@@ -14,7 +14,7 @@ class ListaArticulosView(ListView):
     ordering = ['-fecha']
 
 
-class DetalleArticuloView(LoginRequiredMixin, DetailView):
+class DetalleArticuloView(DetailView): #LoginRequiredMixin,
     model = Articulo
     template_name = 'pr_blogapp/detalle_articulo.html'
     context_object_name = 'articulo'
